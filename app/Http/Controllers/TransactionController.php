@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Models\Product;
+use App\Helpers\ResponseFormatter;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -15,7 +16,12 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::all();
+        try{
+            $transaction = Transaction::all();
+            return ResponseFormatter::success(200,'Data Berhasil Didapatkan', $transaction);
+        } catch (\Throwable $th) {
+            return ResponseFormatter::error(400, $th->getMessage());
+        }
             return view('transaction.index', compact('transaction'));
     }
 

@@ -1,7 +1,7 @@
 <?php
 namespace App\Helpers;
 
-class ApiFormatter {
+class ResponseFormatter {
     protected static $response = [
         'code' => null,
         'status' => null,
